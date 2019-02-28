@@ -58,6 +58,8 @@ parseCli()
     ;;
     "composer") composer $@
     ;;
+    "comp") composer $@
+    ;;
     *) UnknownArgument $1
     ;;
   esac
