@@ -37,7 +37,7 @@ Examples:
 
   $(green "mage alias ")         Setup the alias.
 
-  $(green "mage console ")       Run php bin/console through Docker.
+  $(green "mage sf ")            Run php bin/console through Docker.
 
   $(green "mage composer ")      Run composer through Docker.
 
@@ -52,31 +52,54 @@ parseCli()
   command=$1
 
   case "$command" in
-    "alias") setupAlias
+    "alias") cmdSetupAlias
     ;;
-    "console") console $@
+    "sf") cmdSf $@
     ;;
-    "composer") composer $@
+    "composer") cmdComposer $@
     ;;
-    "comp") composer $@
+    "comp") cmdComposer $@
     ;;
+#    "make:controller") cmdMakeController $@
+#    ;;
+#    "make:command") cmdMakeCommand $@
+#    ;;
+#    "make:entity") cmdMakeEntity $@
+#    ;;
     *) UnknownArgument $1
     ;;
   esac
 
 }
 
-console()
+#cmdMakeController()
+#{
+#  namespaceController='App\UI\Web'
+#
+#  makeCustom ${namespaceController} 'controller' '--no-template'
+#}
+#
+#cmdMakeCommand()
+#{
+#  makeCustom 'App\UI\Cli' 'command'
+#}
+#
+#cmdMakeEntity()
+#{
+#  makeCustom 'App\Domain' 'entity' $2
+#}
+
+cmdSf()
 {
   docker-compose exec php sh -lc "./bin/console $2"
 }
 
-composer()
+cmdComposer()
 {
-  docker-compose run --rm php sh -lc "composer $2 $3 $4"
+  docker-compose exec php sh -lc "composer $2 $3 $4"
 }
 
-setupAlias()
+cmdSetupAlias()
 {
   if grep -q "mage=" ~/.aliases; then
    echoWarn "Alias 'mage' already added."
@@ -103,6 +126,13 @@ setupAlias()
   echoSuccess "'mage' shortcut successfully added to ~/.aliases."
 
 }
+
+# PRIVATE METHODS
+#makeCustom()
+#{
+#  docker-compose exec php sh -lc "MAKER_NAMESPACE='${1}' ./bin/console make:${2} ${3}"
+#}
+
 
 green ()
 {

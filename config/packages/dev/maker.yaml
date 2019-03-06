@@ -1,0 +1,21 @@
+# config/packages/dev/maker.yaml
+#maker:
+#  root_namespace: '%env(resolve:MAKER_NAMESPACE)%'
+
+#  MAKER_NAMESPACE=App\UI\Web
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
+#https://symfony.com/doc/current/service_container/service_decoration.html
