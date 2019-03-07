@@ -294,6 +294,9 @@
     "twig/twig": {
         "version": "v2.6.2"
     },
+    "webmozart/assert": {
+        "version": "1.4.0"
+    },
     "zendframework/zend-code": {
         "version": "3.3.1"
     },
