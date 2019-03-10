@@ -81,6 +81,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "monolog/monolog": {
+        "version": "1.24.0"
+    },
     "nikic/php-parser": {
         "version": "v4.2.1"
     },
@@ -89,6 +92,15 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
+    },
+    "phpdocumentor/reflection-common": {
+        "version": "1.0.1"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "4.3.0"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "0.4.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -194,6 +206,35 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/messenger": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "f11dfa18618a8a5dd853ea3a302db2e0557e031c"
+        },
+        "files": [
+            "config/packages/messenger.yaml"
+        ]
+    },
+    "symfony/monolog-bridge": {
+        "version": "v4.2.4"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.1",
+            "ref": "18ebf5a940573a20de06f9c4060101eeb438cf3d"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
+    },
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
@@ -208,6 +249,9 @@
     },
     "symfony/property-access": {
         "version": "v4.2.3"
+    },
+    "symfony/property-info": {
+        "version": "v4.2.4"
     },
     "symfony/routing": {
         "version": "4.2",
@@ -248,6 +292,12 @@
     "symfony/security-http": {
         "version": "v4.2.3"
     },
+    "symfony/serializer": {
+        "version": "v4.2.4"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.2"
+    },
     "symfony/stopwatch": {
         "version": "v4.2.3"
     },
@@ -266,6 +316,18 @@
             "config/packages/twig.yaml",
             "config/routes/dev/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/validator": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "0cdc982334f45d554957a6167e030482795bf9d7"
+        },
+        "files": [
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/var-dumper": {

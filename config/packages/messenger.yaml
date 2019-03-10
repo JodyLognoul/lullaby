@@ -1,0 +1,22 @@
+framework:
+    messenger:
+        transports:
+            # Uncomment the following line to enable a transport named "amqp"
+            # amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
+
+        routing:
+            # Route your messages to the transports
+            # 'App\Message\YourMessage': amqp
+        buses:
+            messenger.bus.commands:
+                middleware:
+                    - validation # /!\
+                    - doctrine_transaction # /!\ To show: comment this, then POST /api/users/batch with duplicates!
+#                    - logging
+            messenger.bus.queries:
+                middleware:
+                    - validation
+#            messenger.bus.events:
+#                default_middleware: allow_no_handlers
+#                middleware:
+#                    - validation

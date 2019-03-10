@@ -91,7 +91,7 @@ parseCli()
 
 cmdSf()
 {
-  docker-compose exec php sh -lc "./bin/console $2"
+  docker-compose exec php sh -lc "./bin/console $2 $3 $4"
 }
 
 cmdComposer()
