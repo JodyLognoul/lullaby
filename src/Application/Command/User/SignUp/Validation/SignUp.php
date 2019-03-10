@@ -6,7 +6,7 @@
  * Time: 15:44
  */
 
-namespace App\Application\Validation\User\SignUp;
+namespace App\Application\Command\User\SignUp\Validation;
 
 use Symfony\Component\Validator\Constraint;
 

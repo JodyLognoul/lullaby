@@ -6,10 +6,9 @@
  * Time: 15:44
  */
 
-namespace App\Application\Validation\User\SignUp;
+namespace App\Application\Command\User\SignUp\Validation;
 
-
-use App\Application\Validation\User\SignUp\SignUp as SignUpConstraint;
+use App\Application\Command\User\SignUp\Validation\SignUp as SignUpConstraint;
 use App\Application\Command\User\SignUp\SignUpCommand;
 use App\Domain\User\Repository\UserRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
@@ -37,7 +36,7 @@ class SignUpValidator extends ConstraintValidator
     {
         if ($this->userRepository->findByEmail($value->email)) {
             $this->context->buildViolation($constraint->message)
-                ->atPath('foo')
+                ->atPath('email')
                 ->addViolation();
         }
     }

@@ -2,7 +2,7 @@
 
 namespace App\Application\Command\User\SignUp;
 
-use App\Application\Validation\User\SignUp as Assert;
+use App\Application\Command\User\SignUp\Validation as Assert;
 
 /**
  * @Assert\SignUp
