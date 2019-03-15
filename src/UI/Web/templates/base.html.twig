@@ -3,10 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="bg-grey-lighter">
+        <div class="container mx-auto px-4 h-screen">
+            <div class="p-4 px-3 py-32 flex justify-center font-sans">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
