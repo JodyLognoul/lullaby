@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: jody
+ * Date: 2019-03-10
+ * Time: 15:25
+ */
 
 namespace App\UI\Rest\Controller\User;
 
@@ -12,14 +18,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BatchSignUpController extends Controller
+class UserCommandController extends Controller
 {
     /**
-     * @Route("/users/batch", name="user_create_batch", methods={"POST"})
-     * @param Request $request
-     * @return JsonResponse
+     * @Route("/users", name="user_create", methods={"POST"})
      */
-    public function __invoke(Request $request)
+    public function signUp(Request $request): JsonResponse
+    {
+        $signUpCommand = $this->deserialize($request->getContent(), SignUpCommand::class);
+
+        try {
+            $this->commandBus->dispatch($signUpCommand);
+        } catch (ValidationFailedException $e) {
+            return new ViolationResponse($e->getViolations(), Response::HTTP_BAD_REQUEST);
+        }
+
+        return new JsonResponse($signUpCommand);
+    }
+
+    /**
+     * @Route("/users/batch", name="user_create_batch", methods={"POST"})
+     */
+    public function signUpBatch(Request $request): JsonResponse
     {
         /** @var SignUpCommand[] $signUpCommands */
         $signUpCommands = $this->deserialize($request->getContent(), SignUpCommand::class . "[]");

@@ -16,6 +16,9 @@ framework:
             messenger.bus.queries:
                 middleware:
                     - validation
+#                    - log time?
+#                    - cache?
+
 #            messenger.bus.events:
 #                default_middleware: allow_no_handlers
 #                middleware:

@@ -9,7 +9,8 @@
 namespace App\UI\Rest\Controller;
 
 
-use Symfony\Component\Messenger\MessageBusInterface;
+use App\Infrastructure\Share\Bus\CommandBus;
+use App\Infrastructure\Share\Bus\QueryBus;
 use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class Controller
@@ -20,22 +21,22 @@ abstract class Controller
     private $serializer;
 
     /**
-     * @var MessageBusInterface
+     * @var CommandBus
      */
     protected $commandBus;
 
     /**
-     * @var MessageBusInterface
+     * @var QueryBus
      */
     protected $queryBus;
 
     /**
      * SignUpController constructor.
      * @param SerializerInterface $serializer
-     * @param MessageBusInterface $commandBus
-     * @param MessageBusInterface $queryBus
+     * @param CommandBus $commandBus
+     * @param QueryBus $queryBus
      */
-    public function __construct(SerializerInterface $serializer, MessageBusInterface $commandBus, MessageBusInterface $queryBus)
+    public function __construct(SerializerInterface $serializer, CommandBus $commandBus, QueryBus $queryBus)
     {
         $this->serializer = $serializer;
         $this->commandBus = $commandBus;
