@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    <div class="uk-margin-top uk-card uk-card-default uk-card-body">
+        <table class="uk-section uk-animation-fade uk-table uk-table-hover uk-table-divider">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in collection %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <ul class="uk-pagination uk-flex-center" uk-margin>
+            <li><a href="#"><span uk-pagination-previous></span></a></li>
+            <li><a href="{{ path('web_users_cget') }}?page=1">1</a></li>
+            <li><a href="{{ path('web_users_cget') }}?page=2">2</a></li>
+            <li><a href="{{ path('web_users_cget') }}?page=3">3</a></li>
+            <li><a href="{{ path('web_users_cget') }}?page=4">4</a></li>
+            <li><a href="#"><span uk-pagination-next></span></a></li>
+        </ul>
+    </div>
+{% endblock %}

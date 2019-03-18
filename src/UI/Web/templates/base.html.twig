@@ -3,14 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body class="bg-grey-lighter">
-        <div class="container mx-auto px-4 h-screen">
-            <div class="p-4 px-3 py-32 flex justify-center font-sans">
-                {% block body %}{% endblock %}
-            </div>
+        <div class="uk-container uk-container-small">
+            {% block body %}{% endblock %}
         </div>
         {% block javascripts %}{% endblock %}
     </body>

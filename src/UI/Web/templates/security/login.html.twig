@@ -3,46 +3,43 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-            <div class="w-full max-w-xs bg-grey-lighter">
-                <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    {% if error %}
-                        <div class="mb-4 bg-red-lightest border-t border-b border-red text-red-dark px-4 py-3" role="alert">
-                            <p class="text-sm font-bold">Aie!</p>
-                            <p class="text-sm">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <div class="uk-width-1-1">
+            <div class="uk-container">
+                <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                    <div class="uk-width-1-1@m">
+                        <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                            <h3 class="uk-card-title uk-text-center">Sign In</h3>
+                            {% if error %}
+                            <div class="uk-alert-danger" uk-alert>
+                                <a class="uk-alert-close" uk-close></a>
+                                <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                            </div>
+                            {% endif %}
+                            <form method="post">
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                        <input type="email" value="{{ last_username }}" name="email" class="uk-input uk-form-large" required autofocus>
+                                    </div>
+                                </div>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                        <input class="uk-input uk-form-large" type="password" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="uk-margin">
+                                    <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                                </div>
+                                <div class="uk-text-small uk-text-center">
+                                    Not registered? <a href="#">Create an account</a>
+                                </div>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            </form>
                         </div>
-                    {% endif %}
-                    <div class="mb-4">
-                        <label class="block text-grey-darker text-sm font-bold mb-2" for="inputEmail">
-                            Email
-                        </label>
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-                               class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
-                               placeholder="Email" required autofocus>
                     </div>
-                    <div class="mb-6">
-                        <label class="block text-grey-darker text-sm font-bold mb-2" for="inputPassword">
-                            Password
-                        </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
-                               id="inputPassword" type="password" name="password" placeholder="******************"
-                               required>
-                        {#<p class="text-red text-xs italic">Please choose a password.</p>#}
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
-                            Sign In
-                        </button>
-                        <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
-                           href="#">
-                            Forgot Password?
-                        </a>
-                    </div>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                </form>
-                <p class="text-center text-grey text-xs">
-                    ©2019 Acme Corp. All rights reserved.
-                </p>
+                </div>
             </div>
         </div>
     </div>

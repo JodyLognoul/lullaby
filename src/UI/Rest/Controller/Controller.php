@@ -59,8 +59,8 @@ abstract class Controller
      * @param array $context
      * @return string
      */
-    public function serialize($data, array $context = []): string
+    public function serialize($data, $format = 'json', array $context = []): string
     {
-        return $this->serializer->serialize($data, 'json', $context);
+        return $this->serializer->serialize($data, $format, $context);
     }
 }

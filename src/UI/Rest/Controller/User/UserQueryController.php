@@ -8,7 +8,9 @@
 
 namespace App\UI\Rest\Controller\User;
 
+use App\Application\Query\User\GetAll\GetAllQuery;
 use App\Application\Query\User\GetByEmail\GetByEmailQuery;
+use App\Application\Query\User\GetCollection\GetCollectionQuery;
 use App\UI\Rest\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,5 +28,27 @@ class UserQueryController extends Controller
         $userView = $this->queryBus->dispatch(new GetByEmailQuery($email));
 
         return new JsonResponse($userView);
+    }
+
+    /**
+     * @Route("/users", name="user_get_all", methods={"GET"})
+     */
+    public function getAll(): JsonResponse
+    {
+        $userView = $this->queryBus->dispatch(new GetAllQuery());
+
+        return new JsonResponse($userView);
+    }
+
+    /**
+     * @Route("/users/collection", name="user_cget", methods={"POST"})
+     */
+    public function cget(Request $request): JsonResponse
+    {
+        $getCollectionQuery = $this->deserialize($request->getContent(), GetCollectionQuery::class);
+
+        $collection = $this->queryBus->dispatch($getCollectionQuery);
+
+        return new JsonResponse($this->serialize($collection), 200, [], true);
     }
 }
