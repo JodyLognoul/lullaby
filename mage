@@ -60,12 +60,12 @@ parseCli()
     ;;
     "comp") cmdComposer $@
     ;;
-#    "make:controller") cmdMakeController $@
-#    ;;
+    "make:migration") cmdMakeMigration $@
+    ;;
 #    "make:command") cmdMakeCommand $@
 #    ;;
-#    "make:entity") cmdMakeEntity $@
-#    ;;
+    "make:entity") cmdMakeEntity $@
+    ;;
     *) UnknownArgument $1
     ;;
   esac
@@ -84,10 +84,15 @@ parseCli()
 #  makeCustom 'App\UI\Cli' 'command'
 #}
 #
-#cmdMakeEntity()
-#{
-#  makeCustom 'App\Domain' 'entity' $2
-#}
+cmdMakeEntity()
+{
+  makeCustom 'App\Domain' 'entity' $2
+}
+
+cmdMakeMigration()
+{
+  makeCustom 'App\Infrastructure\Share' 'migration' $2
+}
 
 cmdSf()
 {
@@ -128,10 +133,10 @@ cmdSetupAlias()
 }
 
 # PRIVATE METHODS
-#makeCustom()
-#{
-#  docker-compose exec php sh -lc "MAKER_NAMESPACE='${1}' ./bin/console make:${2} ${3}"
-#}
+makeCustom()
+{
+  docker-compose exec php sh -lc "MAKER_NAMESPACE='${1}' ./bin/console make:${2} ${3}"
+}
 
 
 green ()

@@ -1,0 +1,66 @@
+id:
+  generationStrategy: uuid
+  writable: true
+doctrine:
+  useCollection: false
+
+fluentMutatorMethods: true
+fieldVisibility: "protected"
+
+types:
+  # PostalAddress
+  PostalAddress:
+    namespaces:
+      class: "App\\Domain\\Person"
+    properties:
+      addressCountry: { range: "Text" }
+      addressLocality: ~
+      addressRegion: ~
+      postOfficeBoxNumber: ~
+      postalCode: ~
+      streetAddress: ~
+
+  Person:
+    namespaces:
+      class: "App\\Domain\\Person"
+    properties:
+#      personId: { range: "PersonId", embedded: true, columnPrefix: false }
+      additionalName:
+      address: { range: "PostalAddress", cardinality: "(1..1)" }
+      birthDate:
+      familyName:
+      gender:
+      nationality: { range: "Text" }
+
+  # Question
+  Question:
+    namespaces:
+      class: "App\\Domain\\Question"
+    properties:
+      name:
+      upvoteCount:
+      text:
+      dateCreated: { range: "DateTime" }
+      author: { range: "Person", cardinality: "(*..1)" }
+      answerCount:
+      acceptedAnswer: { range: "Answer" }
+      suggestedAnswer:  { range: "Answer" }
+
+  # Answer
+  Answer:
+    namespaces:
+      class: "App\\Domain\\Answer"
+    properties:
+      downvoteCount:
+      parentItem: {range: "Question" }
+      upvoteCount:
+      text:
+      dateCreated: { range: "DateTime" }
+      author: { range: "Person", cardinality: "(*..1)"}
+
+annotationGenerators:
+  - ApiPlatform\SchemaGenerator\AnnotationGenerator\PhpDocAnnotationGenerator
+  - ApiPlatform\SchemaGenerator\AnnotationGenerator\DoctrineOrmAnnotationGenerator
+  #  - ApiPlatform\SchemaGenerator\AnnotationGenerator\ApiPlatformCoreAnnotationGenerator
+  - ApiPlatform\SchemaGenerator\AnnotationGenerator\ConstraintAnnotationGenerator
+  - ApiPlatform\SchemaGenerator\AnnotationGenerator\SerializerGroupsAnnotationGenerator

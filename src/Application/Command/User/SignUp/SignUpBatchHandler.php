@@ -3,7 +3,7 @@
 namespace App\Application\Command\User\SignUp;
 
 use App\Domain\User\Repository\UserRepositoryInterface;
-use App\Domain\User\User;
+use App\Domain\User\Model\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SignUpBatchHandler
@@ -13,14 +13,14 @@ class SignUpBatchHandler
         $users = [];
 
         foreach ($command->signUpCommands as $signUpCommand) {
-            $user = new User();
-            $user
-                ->setEmail($signUpCommand->email)
-                ->setPassword($this->passwordEncoder->encodePassword($user, $signUpCommand->password));
+            $user = new User($this->userRepository->nextIdentity(), $signUpCommand->email);
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $signUpCommand->password));
+
             $users[] = $user;
         }
 
         $this->userRepository->saveBatch($users);
+        $this->userRepository->commit();
     }
 
     /**

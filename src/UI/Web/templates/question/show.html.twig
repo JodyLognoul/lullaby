@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home - Questions{% endblock %}
+
+{% block body %}
+    <article class="uk-article">
+
+        <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ question.name }}</a></h1>
+
+        <p class="uk-article-meta">Written by <a href="#">Super User</a> on 12 April 2012. Posted in <a href="#">Blog</a></p>
+
+        <p>{{ question.text }}</p>
+
+    </article>
+{% endblock %}

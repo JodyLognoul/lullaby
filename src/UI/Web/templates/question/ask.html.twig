@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home - Questions{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <fieldset class="uk-fieldset">
+
+            <legend class="uk-legend">Ask a question</legend>
+
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(form) }}
+            </div>
+
+            <div class="uk-margin">
+                {{ form_widget(form.name, {'attr': {'class': 'uk-input', 'placeholder' : 'Name', 'required': 'required'}}) }}
+            </div>
+
+            <div class="uk-margin">
+                {{ form_widget(form.text, {'attr': {'class': 'uk-textarea', 'placeholder' : 'Text', 'required': 'required', 'rows': '5'}}) }}
+            </div>
+
+            <p uk-margin>
+                {{ form_widget(form.save, {'attr': { 'label': 'SUBMIT', 'class': 'uk-button uk-button-primary uk-button-large'}}) }}
+            </p>
+
+        </fieldset>
+    {{ form_end(form) }}
+{% endblock %}

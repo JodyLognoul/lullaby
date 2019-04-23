@@ -8,7 +8,6 @@
 
 namespace App\Application\Command\User\SignUp;
 
-
 use Webmozart\Assert\Assert;
 
 class SignUpBatchCommand

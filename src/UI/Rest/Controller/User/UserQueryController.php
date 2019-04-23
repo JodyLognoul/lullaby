@@ -19,29 +19,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserQueryController extends Controller
 {
     /**
-     * @Route("/users/{email}", name="user_get_by_email", methods={"GET"})
+     * @Route("/Users/{email}", name="User_get_by_email", methods={"GET"})
      */
     public function getByEmail(Request $request): JsonResponse
     {
         $email = $request->get('email');
 
-        $userView = $this->queryBus->dispatch(new GetByEmailQuery($email));
+        $UserView = $this->queryBus->dispatch(new GetByEmailQuery($email));
 
-        return new JsonResponse($userView);
+        return $this->json($UserView);
     }
 
     /**
-     * @Route("/users", name="user_get_all", methods={"GET"})
+     * @Route("/Users", name="User_get_all", methods={"GET"})
      */
     public function getAll(): JsonResponse
     {
-        $userView = $this->queryBus->dispatch(new GetAllQuery());
+        $UserView = $this->queryBus->dispatch(new GetAllQuery());
 
-        return new JsonResponse($userView);
+        return $this->json($UserView);
     }
 
     /**
-     * @Route("/users/collection", name="user_cget", methods={"POST"})
+     * @Route("/Users/collection", name="User_cget", methods={"POST"})
      */
     public function cget(Request $request): JsonResponse
     {
@@ -49,6 +49,6 @@ class UserQueryController extends Controller
 
         $collection = $this->queryBus->dispatch($getCollectionQuery);
 
-        return new JsonResponse($this->serialize($collection), 200, [], true);
+        return $this->json($collection);
     }
 }

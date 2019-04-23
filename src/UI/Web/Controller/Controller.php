@@ -13,7 +13,7 @@ use App\Infrastructure\Share\Bus\CommandBus;
 use App\Infrastructure\Share\Bus\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class Controller extends AbstractController
+abstract class Controller extends AbstractController
 {
     /**
      * @var CommandBus

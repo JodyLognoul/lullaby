@@ -11,9 +11,10 @@ namespace App\UI\Rest\Controller;
 
 use App\Infrastructure\Share\Bus\CommandBus;
 use App\Infrastructure\Share\Bus\QueryBus;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Serializer\SerializerInterface;
 
-abstract class Controller
+abstract class Controller extends AbstractController
 {
     /**
      * @var SerializerInterface

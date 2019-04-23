@@ -1,58 +1,66 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
-        <div class="uk-width-1-1">
-            <div class="uk-container">
-                <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
-                    <div class="uk-width-1-1@m">
-                        <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
-                            <h3 class="uk-card-title uk-text-center">Sign In</h3>
-                            {% if error %}
-                            <div class="uk-alert-danger" uk-alert>
-                                <a class="uk-alert-close" uk-close></a>
-                                <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
-                            </div>
-                            {% endif %}
-                            <form method="post">
-                                <div class="uk-margin">
-                                    <div class="uk-inline uk-width-1-1">
-                                        <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                        <input type="email" value="{{ last_username }}" name="email" class="uk-input uk-form-large" required autofocus>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <div class="uk-inline uk-width-1-1">
-                                        <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                        <input class="uk-input uk-form-large" type="password" name="password" required>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
-                                </div>
-                                <div class="uk-text-small uk-text-center">
-                                    Not registered? <a href="#">Create an account</a>
-                                </div>
-                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                            </form>
-                        </div>
+<!DOCTYPE html>
+<html lang="en" class="uk-height-1-1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="icon" href="img/favicon.ico">
+    <!-- CSS FILES -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css">
+</head>
+<body class="uk-height-1-1">
+<div class="uk-flex uk-flex-center uk-flex-middle uk-background-muted uk-height-viewport">
+    <div class="uk-width-medium uk-padding-small">
+        {% if error %}
+            <div class="uk-alert-danger" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            </div>
+        {% endif %}
+        <form method="post">
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">Login</legend>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: User"></span>
+                        <input type="email" value="{{ last_Username }}" name="email" class="uk-input uk-form-large"
+                               placeholder="Email" required autofocus>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="uk-margin">
+                    <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+                        <input class="uk-input uk-form-large" type="password" name="password" placeholder="Password"
+                               required>
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label><input class="uk-checkbox" type="checkbox" name="_remember_me"> Keep me logged in</label>
+                </div>
+                <div class="uk-margin">
+                    <button type="submit"
+                            class="uk-button uk-button-primary uk-button-primary uk-button-large uk-width-1-1">LOG IN
+                    </button>
+                </div>
+            </fieldset>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        </form>
     </div>
+</div>
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+<!-- JS FILES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit-icons.min.js"></script>
+</body>
+</html>
+{#
+    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+    See https://symfony.com/doc/current/security/remember_me.html
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-{% endblock %}
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="_remember_me"> Remember me
+        </label>
+    </div>
+#}

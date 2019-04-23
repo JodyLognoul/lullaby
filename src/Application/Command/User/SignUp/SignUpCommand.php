@@ -3,12 +3,19 @@
 namespace App\Application\Command\User\SignUp;
 
 use App\Application\Command\User\SignUp\Validation as Assert;
+use Exception;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
+ * /!\
  * @Assert\SignUp
  */
 class SignUpCommand
 {
+    /** @var UuidInterface */
+    public $id;
+
     /** @var string */
     public $email;
 
@@ -17,11 +24,11 @@ class SignUpCommand
 
     /**
      * SignUpCommand constructor.
-     * @param $email
-     * @param $password
+     * @throws Exception
      */
-    public function __construct($email, $password)
+    public function __construct(string $email, string $password)
     {
+        $this->id = Uuid::uuid4()->toString();
         $this->email = $email;
         $this->password = $password;
     }

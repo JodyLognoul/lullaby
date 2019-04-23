@@ -27,9 +27,12 @@ class UserCommandController extends Controller
     {
         $signUpCommand = $this->deserialize($request->getContent(), SignUpCommand::class);
 
+        //$this->userRepository->nextIdentity() todo!
+
         try {
             $this->commandBus->dispatch($signUpCommand);
         } catch (ValidationFailedException $e) {
+            //todo ConstraintViolationListNormalizer! RFC7807 https://tools.ietf.org/html/rfc7807} le front pet le comprendre !!!
             return new ViolationResponse($e->getViolations(), Response::HTTP_BAD_REQUEST);
         }
 

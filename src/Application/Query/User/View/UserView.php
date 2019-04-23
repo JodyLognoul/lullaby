@@ -11,18 +11,13 @@ namespace App\Application\Query\User\View;
 
 class UserView
 {
-    /** @var integer */
+    /** @var string|null*/
     public $id;
 
     /** @var string */
     public $email;
 
-    /**
-     * UserView constructor.
-     * @param int $id
-     * @param string $email
-     */
-    public function __construct(int $id, string $email)
+    public function __construct(?string $id, ?string $email)
     {
         $this->id = $id;
         $this->email = $email;

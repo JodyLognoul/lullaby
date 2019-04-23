@@ -8,7 +8,7 @@
 
 namespace App\Application\Query\User\GetAll;
 
-use App\Application\Query\User\Repository\UserReadModelRepositoryInterface;
+use App\Application\Query\Question\Repository\QuestionReadModelRepositoryInterface;
 
 class GetAllHandler
 {
@@ -18,14 +18,11 @@ class GetAllHandler
     }
 
     /**
-     * @var UserReadModelRepositoryInterface
+     * @var QuestionReadModelRepositoryInterface
      */
     private $repository;
 
-    /**
-     * GetByEmailHandler constructor.
-     */
-    public function __construct(UserReadModelRepositoryInterface $repository)
+    public function __construct(QuestionReadModelRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }

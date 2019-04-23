@@ -11,23 +11,24 @@ namespace App\Infrastructure\User\Query\Mysql;
 use App\Application\Query\User\Repository\UserReadModelRepositoryInterface;
 use App\Application\Query\User\View\UserView;
 use App\Domain\Shared\Query\Exception\NotFoundException;
-use App\Domain\User\User;
+use App\Domain\User\Model\User;
 use App\Infrastructure\Share\Bridge\Doctrine\Orm\Paginator;
 use App\Infrastructure\Share\Paginator\PaginatorInterface;
 use App\Infrastructure\Share\Query\Repository\MysqlRepository;
+use Doctrine\ORM\NonUniqueResultException;
 
 class MysqlUserReadModelRepository extends MysqlRepository implements UserReadModelRepositoryInterface
 {
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      * @throws NotFoundException
      */
     public function oneByEmail(string $email): UserView
     {
         $userView = $this->em->getRepository(User::class)
-            ->createQueryBuilder('user')
-            ->select('NEW App\Application\Query\User\View\UserView(user.id, user.email)')
-            ->where("user.email = :email")
+            ->createQueryBuilder('User')
+            ->select('NEW App\Application\Query\User\View\UserView(User.id, User.email)')
+            ->where("User.email = :email")
             ->setParameter('email', $email)
             ->getQuery()
             ->getOneOrNullResult();
@@ -45,20 +46,17 @@ class MysqlUserReadModelRepository extends MysqlRepository implements UserReadMo
     public function all(): array
     {
         return $this->em->getRepository(User::class)
-            ->createQueryBuilder('user')
-            ->select('NEW App\Application\Query\User\View\UserView(user.id, user.email)')
+            ->createQueryBuilder('User')
+            ->select('NEW App\Application\Query\User\View\UserView(User.uuid, User.email)')
             ->getQuery()
             ->getResult();
     }
 
-    /**
-     * We use Pagerfanta because it implements JsonSerializable. Doctrine\ORM\Tools\Pagination\Paginator don't!
-     */
     public function collection(int $page, int $limit): PaginatorInterface
     {
         $qb = $this->em->getRepository(User::class)
-            ->createQueryBuilder('user')
-            ->select('user, NEW App\Application\Query\User\View\UserView(user.id, user.email)')
+            ->createQueryBuilder('User')
+            ->select('User, NEW App\Application\Query\User\View\UserView(User.uuid, User.email)')
             ->setFirstResult($limit * ($page - 1))
             ->setMaxResults($limit)
         ;
